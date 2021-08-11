@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/internal/operators';
 import { Observable, throwError, of } from 'rxjs';
 import { client } from '../models/client';
@@ -10,10 +10,19 @@ import { client } from '../models/client';
 export class ClientService {
   private REST_API_SERVER = "https://tennis-test-backend.herokuapp.com/clients/";
 
+
   constructor(private httpClient: HttpClient) { }
 
+
   public sendGetRequest(){
-    return this.httpClient.get(this.REST_API_SERVER).pipe(
+    let headersReq = new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Methods': 'GET',
+      'Access-Control-Allow-Origin': '*'
+    });
+  
+    return this.httpClient.get(this.REST_API_SERVER, { headers: headersReq }).pipe(
       catchError((err) => {
         console.log('error caught in service')
         console.error(err);
