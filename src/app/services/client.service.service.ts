@@ -8,7 +8,7 @@ import { client } from '../models/client';
   providedIn: 'root'
 })
 export class ClientService {
-  private REST_API_SERVER = "http://http://tennistest.us-east-1.elasticbeanstalk.com/clients/";
+  private REST_API_SERVER = "http://tennistest.us-east-1.elasticbeanstalk.com/clients/";
 
   constructor(private httpClient: HttpClient) { }
 
