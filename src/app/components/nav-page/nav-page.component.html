@@ -1,0 +1,30 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true">
+    <mat-toolbar color="primary" style="text-align: center">
+      
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item (click)="route('/dashboard')" ><i
+          class="material-icons">dashboard</i>
+        Dashboard</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item (click)="route('/productControl')"
+        style="padding-left: 10px; width: 190px"><i class="material-icons">today</i> Revisiones</a>
+        <a mat-list-item (click)="route('/users')" 
+        style="padding-left: 10px; width: 190px"><i class="material-icons">people</i> Clientes</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item (click)="route('/login')">Ayuda</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="mat-elevation-z10" style="z-index: 10;">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span class="spacer"></span>
+    </mat-toolbar>
+    <ng-content>
+      
+    </ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

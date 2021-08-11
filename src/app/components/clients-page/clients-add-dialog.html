@@ -1,0 +1,140 @@
+<h2 mat-dialog-title>Agregar Cliente</h2>
+
+<mat-dialog-content class="mat-typography" style="min-width: 100%;overflow: auto;" #scroll id="scroll">
+
+    <mat-vertical-stepper [linear]="isLinear" #stepper (selectionChange)="onChange($event)">
+        <mat-step [stepControl]="ccFormGroup">
+            <form [formGroup]="ccFormGroup">
+                <ng-template matStepLabel>CC</ng-template>
+                <mat-form-field style="width: 100%">
+                    <input id="input0" matInput placeholder="Cédula" formControlName="ccCtrl"
+                        cdkFocusInitial required [(ngModel)]="client.cc" #input0 maxlength="30">
+                    <mat-hint align="start"> </mat-hint>
+                    <mat-hint align="end">{{input0.value.length}} / 30</mat-hint>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperNext>Siguiente</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <mat-step [stepControl]="firstNameFormGroup">
+                <form [formGroup]="firstNameFormGroup">
+                    <ng-template matStepLabel>Nombre</ng-template>
+                    <mat-form-field style="width: 100%">
+                        <input id="input1" matInput placeholder="Nombre" formControlName="firstNameCtrl" required
+                            [(ngModel)]="client.firstName" #input1 [errorStateMatcher]="matcher" maxlength="32">
+                        <mat-hint align="start">
+                            <!--<strong>NIT Proveedor</strong>-->
+                        </mat-hint>
+                        <mat-hint align="end">{{input1.value.length}} / 32</mat-hint>
+    
+                    </mat-form-field>
+                    <div>
+                        <button mat-button matStepperPrevious>Atrás</button>
+                        <button mat-button matStepperNext>Siguiente</button>
+                    </div>
+                </form>
+            </mat-step>
+
+        <mat-step [stepControl]="lastNameFormGroup">
+            <form [formGroup]="lastNameFormGroup">
+                <ng-template matStepLabel>Apellido</ng-template>
+                <mat-form-field style="width: 100%">
+                    <input id="input2" matInput placeholder="Apellido" formControlName="lastNameCtrl" required
+                        [(ngModel)]="client.lastName" #input2 maxlength="32" [errorStateMatcher]="matcher">
+                    <mat-hint align="start">
+                        <!--<strong>Dirección</strong>-->
+                    </mat-hint>
+                    <mat-hint align="end">{{input2.value.length}} / 32</mat-hint>
+
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Atrás</button>
+                    <button mat-button matStepperNext>Siguiente</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <mat-step>
+            <form [formGroup]="birthdayFormGroup">
+                <ng-template matStepLabel>Fecha de nacimiento</ng-template>
+                <mat-form-field appearance="fill">
+                    <mat-label>Sleccione una fecha</mat-label>
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="client.birthday" formControlName="birthdayCtrl" [errorStateMatcher]="matcher">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                  <div>
+                    <button mat-button matStepperPrevious>Atrás</button>
+                    <button mat-button matStepperNext>Siguiente</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <!--<mat-step [stepControl]="roleFormGroup">
+            <form [formGroup]="roleFormGroup">
+                <ng-template matStepLabel>Role</ng-template>
+                <mat-form-field style="width: 100%">
+                    <input id="input4" matInput placeholder="Permisos" formControlName="roleCtrl" required
+                        [(ngModel)]="user.role" #input4 maxlength="10" [errorStateMatcher]="matcher">
+                    <mat-hint align="start">
+                        
+                    </mat-hint>
+                    <mat-hint align="end">{{input4.value.length}} / 10</mat-hint>
+
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Atrás</button>
+                    <button mat-button matStepperNext>Siguiente</button>
+                </div>
+            </form>
+        </mat-step>-->
+
+        
+
+        <mat-step>
+            <ng-template matStepLabel>Listo!</ng-template>
+            Terminamos. Antes de presionar 'Enter' o hacer click en 'Añadir', verifique que la información esté
+            correcta.
+            <mat-divider></mat-divider>
+            <div>
+                <div style="width: 100%; display: inline-block;">
+                    <br>
+                    Cédula:
+                    <br>
+                    {{client.cc}}
+                    <br>
+                    <br>
+                    Nombre:
+                    <br>
+                    {{client.firstName}}
+                    <br>
+                    <br>
+                    Apellido:
+                    <br>
+                    {{client.lastName}}
+                    <br>
+                    <br>
+                    Fecha de nacimiento:
+                    <br>
+                    {{client.birthday}}
+                </div>
+            </div>
+            <br>
+            <mat-divider id="divider"></mat-divider>
+            <div align="end">
+                <button mat-button matStepperPrevious>Atrás</button>
+                <button mat-button (click)="stepper.reset()" id="reset">Reiniciar*</button>
+            </div>
+        </mat-step>
+    </mat-vertical-stepper>
+    
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close="null" [disabled]="progress">Cancelar</button>
+    <button id="add" mat-button (click)="onClickAdd()" [disabled]="allow || progress">Añadir</button>
+</mat-dialog-actions>
+<br>
+<mat-progress-bar mode="indeterminate" color="accent" *ngIf="progress"></mat-progress-bar>

@@ -1,0 +1,92 @@
+<div class="grid-container" style="height: 100%;overflow-x:auto;" @moveIn>
+  <div class="docs-primary-header" style="position: relative">
+    <h1 class="mat-h1"><i class="material-icons">people</i> Clientes</h1>
+    <button mat-fab color="accent" matTooltip="Ir a Dashboard" (click)="route('/dashboard')"
+      style="position: absolute; right: 15px; top: 15px;">
+      <mat-icon>dashboard</mat-icon>
+    </button>
+  </div>
+
+  <br>
+
+
+  <div style="text-align: center">
+    <button mat-raised-button color="primary" (click)="addClient()">Añadir Cliente</button>
+  </div>
+
+  <div style="text-align: center; margin-top: 10px;margin-bottom: 10px">
+    <div style="width: 90%; margin: auto">
+
+      <div class="gen-container" style="min-height: 350px; max-height: 350px">
+
+        <div style="width: 95%; margin:0 auto; min-height: 350px; max-height: 350px">
+
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar Clientes">
+          </mat-form-field>
+
+          <div class="example-container mat-elevation-z8">
+
+            <mat-table [dataSource]="dataSource" matSort [class.isMobile]="isMobile">
+
+              <ng-container matColumnDef="id" matSortActive="true">
+                <mat-header-cell [hidden]="show" *matHeaderCellDef mat-sort-header > id </mat-header-cell>
+                <mat-cell  [hidden]="show" *matCellDef="let row">
+                  <span class="mobile-label">id: </span> {{row.id}} </mat-cell>
+              </ng-container>    
+
+              <ng-container matColumnDef="cc" matSortActive="true">
+                <mat-header-cell *matHeaderCellDef mat-sort-header > Cédula </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                  <span class="mobile-label">Cédula: </span> {{row.cc}} </mat-cell>
+              </ng-container>              
+              
+              <ng-container matColumnDef="firstName" matSortActive="true">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                  <span class="mobile-label">Nombre: </span> {{row.firstName}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="lastName" matSortActive="true">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                  <span class="mobile-label">Apellido: </span> {{row.lastName}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="birthday" matSortActive="true">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de nacimiento </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                  <span class="mobile-label">Fecha de nacimiento: </span> {{row.birthday}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="noRecord">
+                <td mat-footer-cell *matFooterCellDef>No records found.</td>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRecord(row)"
+                class="example-element-row">
+              </mat-row>
+            </mat-table>
+          </div>
+          <mat-card *ngIf="isLoading" style="justify-content: center; align-items: center; margin: 0 auto">
+            <mat-progress-spinner diameter="50" color="primary" mode="indeterminate" *ngIf="isLoading"
+              style="margin: 0 auto">
+            </mat-progress-spinner>
+            <br>
+            <div style="text-align: center">
+              <label>Cargando Datos</label>
+              <br>
+              <label> La operación puede tardar unos minutos dependiendo de la velocidad en su conexión a internet.
+              </label>
+              <br>
+              <label>Por favor espere...</label>
+            </div>
+          </mat-card>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>

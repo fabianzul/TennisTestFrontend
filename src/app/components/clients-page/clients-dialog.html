@@ -1,0 +1,60 @@
+<h1 mat-dialog-title>Datos, Actualización y eliminación</h1>
+<div mat-dialog-content class="mat-typography">
+    <br>
+    <div>
+        <label style="font-size: 35dp; color:rgb(67, 160, 71); font-weight: bold">Cédula</label>
+        <div class="angular-with-newlines" style="text-indent: 30px">
+            <input id="input1" matInput placeholder="Cedula" required style="width: 50%;"
+            [(ngModel)]="data.client.cc" #input1 [errorStateMatcher]="matcher" maxlength="32">
+        </div>
+    </div>
+
+    <div>
+        <label style="font-size: 35dp; color:rgb(67, 160, 71); font-weight: bold">Nombre</label>
+        <div class="angular-with-newlines" style="text-indent: 30px">
+            <input id="input2" matInput placeholder="Nombre" required style="width: 50%;"
+            [(ngModel)]="data.client.firstName" #input1 [errorStateMatcher]="matcher" maxlength="32">
+        </div>
+    </div>
+    <!--<div style="width: 5%"></div>-->
+    <div>
+        <label style="font-size: 35dp; color:rgb(67, 160, 71); font-weight: bold">Apellido</label>
+        <div class="angular-with-newlines" style="text-indent: 30px">
+            <input id="input3" matInput placeholder="Apellido" required style="width: 50%;"
+            [(ngModel)]="data.client.lastName" #input1 [errorStateMatcher]="matcher" maxlength="32">
+        </div>
+    </div>
+
+    <div>
+        <label style="font-size: 35dp; color:rgb(67, 160, 71); font-weight: bold">Fecha de nacimiento</label>
+        <div class="angular-with-newlines" style="text-indent: 30px">
+            <mat-form-field style="width: 50%; text-align: left;">
+                <mat-label>Sleccione una fecha</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="data.client.birthday"  [errorStateMatcher]="matcher">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <br>
+    <br>
+
+</div>
+<br>
+<div mat-dialog-actions align="end" style="position: relative;">
+    <button  mat-mini-fab color="warn" style="position: absolute; left: 10px;" (click)="onDeleteClick(data.client.id)">
+        <mat-icon>delete</mat-icon>
+    </button>
+    <!--<button mat-mini-fab color="primary" style="background-color: gray; position: absolute; right:60px;">
+        <mat-icon>close</mat-icon>
+    </button>-->
+    <button mat-mini-fab color="primary" style="position: absolute; right: 10px;" (click)="updateClient(data.client)">
+        <mat-icon>check</mat-icon>
+    </button>
+    <!--<button mat-button cdkFocusInitial (click)="onNoClick()">Ok</button>-->
+</div>
+<br>
+<mat-progress-bar mode="indeterminate" color="accent" *ngIf="progress"></mat-progress-bar>

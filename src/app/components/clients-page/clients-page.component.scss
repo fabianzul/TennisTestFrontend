@@ -1,0 +1,295 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+
+.grid-container {
+  position: unset !important;
+  overflow: auto;
+  margin: 0px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}
+
+.docs-primary-header{
+  padding-left:20px
+}
+.docs-primary-header h1{
+  font-weight:300;
+  margin:0;
+  padding:28px 8px;
+  font-size:20px;
+  color:#fff
+}
+
+.docs-primary-header{
+  background:#43a047;  
+}
+
+.docs-header-headline{
+  color:#fff
+}
+
+i.material-icons {
+  font-size: 18px;
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: #485a48;
+  cursor: pointer;
+}
+
+.example-container {
+  max-height: auto;
+  overflow: auto;
+  text-align: left;
+}
+
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+/*td, th {
+  width: 25%;
+}*/
+
+
+
+
+.home-button-container {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    vertical-align: bottom;
+    bottom: 10px;
+  }
+  
+
+  .angular-with-newlines {
+    white-space: pre-line;
+}
+
+mat-row.example-element-row:not(.example-expanded-row):hover {
+  background: #485a48;
+  cursor: pointer;
+}
+
+.mat-table {
+  
+  width: 100%;
+}
+
+.mobile-label {
+  display: none;
+}
+
+.mat-column-code {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 70% !important;
+  width: 70% !important;
+  height: 10px;
+  overflow-wrap: break-word;  
+  word-break: break-word;
+}
+
+.mat-column-name {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 30% !important;
+  width: 30% !important;
+  overflow-wrap: break-word;  
+  word-break: break-word;
+}
+
+::ng-deep.mat-checkbox-checked.mat-accent.mat-checkbox-disabled .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: yellow !important;
+}
+
+
+#one {
+  float:left;
+  width:45%;
+}
+#two { 
+  float: right;
+  width: 55%;
+}
+
+
+
+@media(max-width: 600px) {
+
+  .mobile-label {
+    width: 80px;
+    display: inline-block;
+        font-weight: bold;
+  }
+
+  .mat-header-row {
+    display: none;
+  }
+
+  .mat-row { 
+    flex-direction: column;
+    align-items: start;
+    padding: 8px 8px 0px 8px;
+  }
+
+  mat-footer-row, mat-header-row, mat-row {
+    display: flex;
+    
+    border-bottom-width: 5px;
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-left-width: 5px;
+    border-color: gray;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  mat-footer-row::after, mat-header-row::after, mat-row::after {
+    display: inline-block;
+    min-height: auto;
+    content: '';
+  }
+
+  mat-cell:first-of-type, mat-footer-cell:first-of-type, mat-header-cell:first-of-type {
+    padding-left: 0px;
+  }
+
+  .mat-column-mail {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0% !important;
+    width: auto !important;
+    overflow-wrap: break-word;  
+    word-break: break-word;
+  }
+  
+  .mat-column-name {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0% !important;
+    width: auto !important;
+    overflow-wrap: break-word;  
+    word-break: break-word;
+  }
+  
+
+
+
+}
+
+
+// More practical CSS...
+// using mobile first method (IE8,7 requires respond.js polyfill https://github.com/scottjehl/Respond)
+
+$breakpoint-alpha: 480px; // adjust to your needs
+
+.rwd-table {
+  margin: 1em 0;
+  max-width: 100%; // adjust to your needs
+  min-width: 250px;
+  
+  tr {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    display: none; // for accessibility, use a visually hidden method here instead! Thanks, reddit!   
+  }
+  
+  td {
+    display: block; 
+    
+    &:first-child {
+      padding-top: .5em;
+    }
+    &:last-child {
+      padding-bottom: .5em;
+    }
+
+    &:before {
+      content: attr(data-th)": "; // who knew you could do this? The internet, that's who.
+      font-weight: bold;
+
+      // optional stuff to make it look nicer
+      width: 5em; // magic number :( adjust according to your own content
+      display: inline-block;
+      // end options
+      
+      @media (min-width: $breakpoint-alpha) {
+        display: none;
+      }
+    }
+  }
+  
+  th, td {
+    text-align: left;
+    
+    @media (min-width: $breakpoint-alpha) {
+      display: table-cell;
+      padding: .25em .5em;
+      
+      &:first-child {
+        padding-left: 0;
+      }
+      
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+
+  }
+  
+  
+}
+
+
+// presentational styling
+
+
+
+.rwd-table {
+  color: #fff;
+  border-collapse: collapse;
+  border-radius: .4em;
+  overflow: hidden;
+  tr {
+    border-color: lighten(rgb(77, 97, 83), 10%);
+  }
+  th, td {
+    margin: .5em 1em;
+    @media (min-width: $breakpoint-alpha) { 
+      padding: 1em !important; 
+    }
+  }
+  th, td:before {
+    color: #dd5;
+  }
+}
